@@ -1,0 +1,7 @@
+(executable
+ (name test))
+
+(alias
+ (name runtest)
+ (deps test.exe)
+ (action (run %{deps} -q --color=always)))
