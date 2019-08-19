@@ -1,0 +1,42 @@
+language: minimal
+dist: bionic
+sudo: required
+
+cache:
+  directories:
+  - $HOME/bin
+  - $HOME/syspkg
+  - $HOME/.opam-2
+  - $HOME/.opam-1
+
+env:
+- OCAML_VERSION=4.08.1
+- OCAML_VERSION=4.06.1
+- OCAML_VERSION=4.05.0
+- OCAML_VERSION=4.02.3
+- OCAML_VERSION=4.07.0 OPAM_VERSION=1.2.2
+- OCAML_VERSION=4.02.3 OPAM_VERSION=1.2.2
+
+# jobs:
+#   include:
+#     - if: branch = opam1
+#       env: OCAML_VERSION=4.07.0 OPAM_VERSION=1.2.2
+
+before_install: bash -ex .travis-ci.sh before_install
+
+install: bash -ex .travis-ci.sh install
+
+script: bash -ex .travis-ci.sh script
+
+before_cache: bash -ex .travis-ci.sh before_cache
+
+# after_success: bash -ex .travis-ci.sh after_success
+# after_failure: bash -ex .travis-ci.sh after_failure
+# before_deploy: bash -ex .travis-ci.sh before_deploy
+# deploy:
+#   provider: script
+#   script: bash -ex .travis-ci.sh deploy
+#   on:
+#     branch: test-ci
+# after_deploy: bash -ex .travis-ci.sh after_deploy
+# after_script: bash -ex .travis-ci.sh after_script
